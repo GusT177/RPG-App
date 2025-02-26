@@ -4,7 +4,7 @@ import  { RouterLink }  from 'vue-router';
 
 <template>
     <header>
-        <h1><RouterLink to="/">D&D Makai</RouterLink></h1>
+        <h1><RouterLink to="/">D&D Makai <img src="../assets/d20icon.svg" alt="d20 dice icon"></RouterLink> </h1>
        
         <nav>
             <ul>
@@ -27,10 +27,23 @@ header{
     color: white;
 }
 
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 h1 a{
     display: flex;
+    gap: 1rem;
     text-decoration: none;
     color: white;
+}
+
+ h1 img{
+    width: 2rem;
+    height: 2rem;
 }
 
 nav{

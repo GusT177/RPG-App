@@ -12,6 +12,16 @@ export default {
             type: String,
             default: "Enviar"
         }
+    },
+    data() {
+        return {
+            formData: {}
+        }
+    },
+    methods: {
+        handleSubmit() {
+            this.$emit('submit', this.formData)
+        }
     }
     
 }
@@ -30,5 +40,28 @@ export default {
 
 
 <style>
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: 20px;
+    background-color: rgba(243, 243, 243, 0.952);
+}
+
+div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+button{
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: rgb(33, 33, 71);
+    color: white;
+    cursor: pointer;
+}
 
 </style>
