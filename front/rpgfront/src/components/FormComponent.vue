@@ -32,7 +32,7 @@ export default {
     <form @submit.prevent="handleSubmit"> 
         <div v-for="(field, index) in fields" :key="index">
             <label :for="field.name">{{ field.label }}</label>
-            <input :type="field.type" :id="field.id" :name="field.name" v-model="formData[field.name]" :placeholder="field.placeholder" />
+            <input class="field" :type="field.type" :id="field.id" :name="field.name" v-model="formData[field.name]" :placeholder="field.placeholder" />
         </div>
         <button type="submit">{{ btnText }}</button>
     </form>
@@ -49,6 +49,13 @@ form{
     background-color: rgba(243, 243, 243, 0.952);
 }
 
+.field{
+    display: flex;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+}
+
 div{
     display: flex;
     justify-content: center;
@@ -57,6 +64,7 @@ div{
 }
 
 button{
+    margin-top: 1rem;
     padding: 0.5rem;
     border-radius: 10px;
     background-color: rgb(33, 33, 71);
