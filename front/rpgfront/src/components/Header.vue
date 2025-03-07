@@ -1,22 +1,67 @@
 <script>
 import  { RouterLink }  from 'vue-router';
+
+export default {
+  data() {
+    return {
+      isLogged: false,
+      userInfo: null
+    }
+  },
+
+  created(){
+    const logged = localStorage.getItem('isLogged');
+    if (logged) {
+      this.isLogged = true;
+      this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    }
+  },
+
+  methods: {
+    logout(){
+      localStorage.removeItem('isLogged');
+      localStorage.removeItem('userInfo');
+
+      this.isLogged = false;
+      this.userInfo = null;
+
+      this.$router.push('/login');
+    }
+  },
+
+
+}
+
+
 </script>
 
 <template>
     <header>
         <h1><RouterLink to="/">D&D Makai <img src="../assets/d20icon.svg" alt="d20 dice icon"></RouterLink> </h1>
-       
-        <nav>
-            <ul>
-                <li><RouterLink to="/register">Registrar</RouterLink></li>
-                <li><RouterLink to="/login">Login</RouterLink></li>
-            </ul>
-        </nav>
+
+        <div v-if="isLogged">
+            <nav>
+                <ul>
+                    <li><RouterLink to="/campaign">Campanhas</RouterLink></li>
+                    <li><RouterLink to="#">Sobre</RouterLink></li>
+                    <li><RouterLink to="#"> {{ userInfo.user }}</RouterLink></li>
+                    <li><button class="logoutbtn" @click="logout">Sair</button></li>
+                </ul>
+            </nav>
+        </div>
+        <div v-else>
+            <nav>
+                <ul>
+                    <li><RouterLink to="/register">Registrar</RouterLink></li>
+                    <li><RouterLink to="/login">Login</RouterLink></li>
+                </ul>
+            </nav>
+        </div>
 
     </header>
 </template>
 
-<style>
+<style scoped>
 
 header{
     display: flex;
@@ -49,6 +94,7 @@ h1 a{
 nav{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 ul {
@@ -56,7 +102,7 @@ ul {
     justify-content: center;
     align-items: center;
     list-style: none;
-    gap: 1rem;
+    gap: 1.5rem;
     margin: 0.5rem;
 }
 
@@ -65,5 +111,20 @@ ul li a{
     color: white;
     font-size: 20px;
 }
+
+
+.logoutbtn{
+  display: flex;
+  justify-content: center;
+  background: none;
+  padding: 0.5rem;
+  color: white;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 3rem;
+}
+
+
 
 </style>

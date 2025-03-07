@@ -19,7 +19,7 @@
   </section>
 </template>
 
-<style >
+<style scoped>
 
 .hero{
   display: flex;
@@ -45,13 +45,17 @@
   background-color: whitesmoke;
   border-radius: 10px;
   width: 25rem;
+  padding: 1rem;
 }
 
 .card-list{
   display: flex;
   flex-direction: column;
+  text-align: center;
+  list-style: none;
   gap: 2rem;
 }
+
 
 
 </style>

@@ -1,13 +1,11 @@
 <script>
 
-
-
 export default {
     props: {
         fields: {
             type: Array,
             required: true
-        }, 
+        },
         btnText: {
             type: String,
             default: "Enviar"
@@ -23,13 +21,13 @@ export default {
             this.$emit('submit', this.formData)
         }
     }
-    
+
 }
 
 </script>
 
 <template>
-    <form @submit.prevent="handleSubmit"> 
+    <form @submit.prevent="handleSubmit">
         <div v-for="(field, index) in fields" :key="index">
             <label :for="field.name">{{ field.label }}</label>
             <input class="field" :type="field.type" :id="field.id" :name="field.name" v-model="formData[field.name]" :placeholder="field.placeholder" />
@@ -39,7 +37,7 @@ export default {
 </template>
 
 
-<style>
+<style scoped>
 form{
     display: flex;
     flex-direction: column;
