@@ -1,10 +1,12 @@
 <script>
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
   <section class="hero">
     <h1>RPG Dungeons & Dragons</h1>
     <h3>Olhe as instruções abaixo.. </h3>
+    <a><RouterLink class="link" to="/ficha"> Ficha</RouterLink></a>
   </section>
 
   <section class="instructions">
@@ -52,6 +54,10 @@
   flex-direction: column;
   gap: 2rem;
 }
-
+.link{
+  color: azure;
+  background-color: rgb(64, 64, 121);
+  padding: 10px;
+}
 
 </style>
