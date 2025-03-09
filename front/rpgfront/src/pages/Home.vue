@@ -21,7 +21,7 @@ import { RouterLink } from 'vue-router';
   </section>
 </template>
 
-<style >
+<style scoped>
 
 .hero{
   display: flex;
@@ -47,11 +47,14 @@ import { RouterLink } from 'vue-router';
   background-color: whitesmoke;
   border-radius: 10px;
   width: 25rem;
+  padding: 1rem;
 }
 
 .card-list{
   display: flex;
   flex-direction: column;
+  text-align: center;
+  list-style: none;
   gap: 2rem;
 }
 .link{
@@ -59,5 +62,6 @@ import { RouterLink } from 'vue-router';
   background-color: rgb(64, 64, 121);
   padding: 10px;
 }
+
 
 </style>
