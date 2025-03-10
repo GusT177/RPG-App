@@ -5,15 +5,16 @@ export default {
   data() {
     return {
       isLogged: false,
-      userInfo: null
+      userInfo: {}
     }
   },
 
-  created(){
+  mounted(){
     const logged = localStorage.getItem('isLogged');
     if (logged) {
       this.isLogged = true;
-      this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      this.userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
+      console.log("User loaded: ", this.userInfo );
     }
   },
 
@@ -43,8 +44,9 @@ export default {
             <nav>
                 <ul>
                     <li><RouterLink to="/campaign">Campanhas</RouterLink></li>
+                    <li><RouterLink to="/characters">Personagens</RouterLink></li>
                     <li><RouterLink to="#">Sobre</RouterLink></li>
-                    <li><RouterLink to="#"> {{ userInfo.user }}</RouterLink></li>
+                    <li><RouterLink to="#" class="user-label"> Bomdia {{ userInfo.user }}</RouterLink></li>
                     <li><button class="logoutbtn" @click="logout">Sair</button></li>
                 </ul>
             </nav>
@@ -110,6 +112,10 @@ ul li a{
     text-decoration: none;
     color: white;
     font-size: 20px;
+}
+
+.user-label{
+
 }
 
 

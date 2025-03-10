@@ -5,9 +5,9 @@
       <div class="progress-bar">
         <div class="progress-line" :style="{ width: progressWidth + '%' }"></div>
         <div class="progress-steps">
-          <div 
-            class="progress-step" 
-            v-for="(step, index) in steps" 
+          <div
+            class="progress-step"
+            v-for="(step, index) in steps"
             :key="index"
             :class="{ 'active': currentStep === index, 'completed': currentStep > index }"
             @click="goToStep(index)"
@@ -26,7 +26,7 @@
           <label for="characterName">Nome do Personagem</label>
           <input type="text" id="characterName" v-model="character.name" placeholder="Nome do seu personagem">
         </div>
-        
+
         <div class="form-row">
           <div class="form-group">
             <label for="class">Classe</label>
@@ -46,7 +46,7 @@
               <option value="Feiticeiro">Feiticeiro</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label for="level">Nível</label>
             <select id="level" v-model="character.level">
@@ -54,7 +54,7 @@
             </select>
           </div>
         </div>
-        
+
         <div class="form-row">
           <div class="form-group">
             <label for="race">Raça</label>
@@ -71,7 +71,7 @@
               <option value="Tiefling">Tiefling</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label for="background">Antecedente</label>
             <select id="background" v-model="character.background">
@@ -92,7 +92,7 @@
             </select>
           </div>
         </div>
-        
+
         <div class="form-row">
           <div class="form-group">
             <label for="alignment">Alinhamento</label>
@@ -109,13 +109,13 @@
               <option value="Caótico e Mau">Caótico e Mau</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label for="playerName">Nome do Jogador</label>
             <input type="text" id="playerName" v-model="character.playerName" placeholder="Seu nome">
           </div>
         </div>
-        
+
         <div class="form-group">
           <label for="experiencePoints">Pontos de Experiência</label>
           <input type="number" id="experiencePoints" v-model="character.experiencePoints" placeholder="0">
@@ -125,7 +125,7 @@
       <!-- Etapa 2: Atributos -->
       <div v-if="currentStep === 1" class="step-content">
         <p class="step-description">Defina os valores dos seus atributos principais. Estes valores determinam o que seu personagem é bom em fazer.</p>
-        
+
         <div class="attributes-container">
           <div class="attribute-card" v-for="attr in attributes" :key="attr.key">
             <h3>{{ attr.name }}</h3>
@@ -140,7 +140,7 @@
             <p class="attribute-description">{{ attr.description }}</p>
           </div>
         </div>
-        
+
         <div class="points-remaining">
           <p>Pontos Restantes: <span>{{ remainingPoints }}</span></p>
           <p class="hint">Use o sistema de pontos para distribuir entre seus atributos. Cada atributo começa em 8 e pode ir até 15.</p>
@@ -153,17 +153,17 @@
           <h3>Bônus de Proficiência: +{{ calculateProficiencyBonus() }}</h3>
           <p>Baseado no seu nível {{ character.level }}</p>
         </div>
-        
+
         <div class="skills-section">
           <h3>Perícias</h3>
           <p>Selecione as perícias em que seu personagem é proficiente:</p>
-          
+
           <div class="skill-list">
             <div class="skill-item" v-for="skill in skills" :key="skill.name">
               <label :for="skill.key">
-                <input 
-                  type="checkbox" 
-                  :id="skill.key" 
+                <input
+                  type="checkbox"
+                  :id="skill.key"
                   v-model="character.skills[skill.key]"
                   :disabled="countSelectedSkills() >= maxSkills && !character.skills[skill.key]"
                 >
@@ -175,22 +175,22 @@
               </label>
             </div>
           </div>
-          
+
           <p class="skill-counter">
             Perícias selecionadas: {{ countSelectedSkills() }}/{{ maxSkills }}
           </p>
         </div>
-        
+
         <div class="saving-throws-section">
           <h3>Testes de Resistência</h3>
           <p>Baseado na sua classe, você é proficiente nos seguintes testes de resistência:</p>
-          
+
           <div class="saving-throws-list">
             <div class="saving-throw-item" v-for="save in savingThrows" :key="save.key">
               <label :for="'save-'+save.key">
-                <input 
-                  type="checkbox" 
-                  :id="'save-'+save.key" 
+                <input
+                  type="checkbox"
+                  :id="'save-'+save.key"
                   v-model="character.savingThrows[save.key]"
                   :disabled="true"
                 >
@@ -212,20 +212,20 @@
             <div class="stat-value">{{ calculateArmorClass() }}</div>
             <p>Baseado na sua Destreza e equipamento</p>
           </div>
-          
+
           <div class="combat-stat-card">
             <h3>Iniciativa</h3>
             <div class="stat-value">{{ calculateModifier(character.attributes.dexterity) }}</div>
             <p>Baseado no seu modificador de Destreza</p>
           </div>
-          
+
           <div class="combat-stat-card">
             <h3>Deslocamento</h3>
             <div class="stat-value">9m</div>
             <p>Deslocamento base para a maioria das raças</p>
           </div>
         </div>
-        
+
         <div class="hit-points-section">
           <h3>Pontos de Vida</h3>
           <div class="hit-points-row">
@@ -236,18 +236,18 @@
                 <p>Baseado na sua classe e Constituição</p>
               </div>
             </div>
-            
+
             <div class="form-group">
               <label for="currentHitPoints">Pontos de Vida Atuais</label>
               <input type="number" id="currentHitPoints" v-model="character.currentHitPoints">
             </div>
-            
+
             <div class="form-group">
               <label for="temporaryHitPoints">Pontos de Vida Temporários</label>
               <input type="number" id="temporaryHitPoints" v-model="character.temporaryHitPoints">
             </div>
           </div>
-          
+
           <div class="hit-dice-section">
             <h3>Dados de Vida</h3>
             <div class="hit-dice-display">
@@ -255,7 +255,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="attacks-section">
           <h3>Ataques</h3>
           <table class="attacks-table">
@@ -297,7 +297,7 @@
             <button class="add-equipment-btn" @click="addEquipment">+ Adicionar Item</button>
           </div>
         </div>
-        
+
         <div class="currency-section">
           <h3>Moedas</h3>
           <div class="currency-grid">
@@ -329,46 +329,46 @@
       <div v-if="currentStep === 5" class="step-content">
         <div class="personality-section">
           <h3>Traços de Personalidade</h3>
-          <textarea 
-            v-model="character.personalityTraits" 
+          <textarea
+            v-model="character.personalityTraits"
             placeholder="Descreva os traços de personalidade do seu personagem..."
             rows="3"
           ></textarea>
-          
+
           <h3>Ideais</h3>
-          <textarea 
-            v-model="character.ideals" 
+          <textarea
+            v-model="character.ideals"
             placeholder="Quais são os ideais que motivam seu personagem?"
             rows="3"
           ></textarea>
-          
+
           <h3>Vínculos</h3>
-          <textarea 
-            v-model="character.bonds" 
+          <textarea
+            v-model="character.bonds"
             placeholder="Descreva os vínculos do seu personagem com pessoas, lugares ou objetos..."
             rows="3"
           ></textarea>
-          
+
           <h3>Fraquezas</h3>
-          <textarea 
-            v-model="character.flaws" 
+          <textarea
+            v-model="character.flaws"
             placeholder="Quais são as fraquezas ou defeitos do seu personagem?"
             rows="3"
           ></textarea>
         </div>
-        
+
         <div class="features-section">
           <h3>Características e Traços</h3>
           <p>Adicione características de classe, raça, antecedente ou outras habilidades especiais:</p>
-          
+
           <div class="features-list">
             <div v-for="(feature, index) in character.features" :key="index" class="feature-item">
               <div class="feature-header">
                 <input type="text" v-model="feature.name" placeholder="Nome da característica">
                 <button class="remove-btn" @click="removeFeature(index)">×</button>
               </div>
-              <textarea 
-                v-model="feature.description" 
+              <textarea
+                v-model="feature.description"
                 placeholder="Descrição da característica..."
                 rows="2"
               ></textarea>
@@ -382,7 +382,7 @@
       <div v-if="currentStep === 6" class="step-content review-step">
         <h3>Revisão do Personagem</h3>
         <p>Revise as informações do seu personagem antes de finalizar:</p>
-        
+
         <div class="review-card">
           <h4>Informações Básicas</h4>
           <div class="review-grid">
@@ -408,7 +408,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="review-card">
           <h4>Atributos</h4>
           <div class="review-attributes">
@@ -419,7 +419,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="review-card">
           <h4>Combate</h4>
           <div class="review-combat">
@@ -441,7 +441,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="review-actions">
           <button class="finish-btn" @click="finishCharacter">Finalizar Personagem</button>
           <button class="edit-btn" @click="currentStep = 0">Editar do Início</button>
@@ -450,16 +450,16 @@
     </main>
 
     <footer class="wizard-footer">
-      <button 
-        v-if="currentStep > 0" 
-        class="nav-btn prev-btn" 
+      <button
+        v-if="currentStep > 0"
+        class="nav-btn prev-btn"
         @click="prevStep"
       >
         Anterior
       </button>
-      <button 
-        v-if="currentStep < steps.length - 1" 
-        class="nav-btn next-btn" 
+      <button
+        v-if="currentStep < steps.length - 1"
+        class="nav-btn next-btn"
         @click="nextStep"
         :disabled="!canProceed"
       >
@@ -679,12 +679,12 @@ const calculateArmorClass = () => {
 const calculateMaxHitPoints = () => {
   const conMod = Math.floor((character.value.attributes.constitution - 10) / 2);
   let hitDice = 8; // Padrão
-  
+
   // Determina o dado de vida baseado na classe
   switch (character.value.class) {
     case 'Bárbaro': hitDice = 12; break;
-    case 'Guerreiro': 
-    case 'Paladino': 
+    case 'Guerreiro':
+    case 'Paladino':
     case 'Patrulheiro': hitDice = 10; break;
     case 'Bruxo':
     case 'Bardo':
@@ -695,12 +695,12 @@ const calculateMaxHitPoints = () => {
     case 'Mago':
     case 'Ladino': hitDice = 6; break;
   }
-  
+
   // No primeiro nível, você recebe o máximo do dado de vida + mod de constituição
   // Para cada nível adicional, a média do dado + mod de constituição
   const firstLevelHP = hitDice + conMod;
   const additionalLevelsHP = (character.value.level - 1) * (Math.floor(hitDice / 2) + 1 + conMod);
-  
+
   return firstLevelHP + additionalLevelsHP;
 };
 
@@ -708,8 +708,8 @@ const calculateMaxHitPoints = () => {
 const getHitDiceByClass = () => {
   switch (character.value.class) {
     case 'Bárbaro': return 'd12';
-    case 'Guerreiro': 
-    case 'Paladino': 
+    case 'Guerreiro':
+    case 'Paladino':
     case 'Patrulheiro': return 'd10';
     case 'Bruxo':
     case 'Bardo':
@@ -797,9 +797,9 @@ const finishCharacter = () => {
 const downloadCharacter = () => {
   const dataStr = JSON.stringify(character.value, null, 2);
   const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-  
+
   const exportFileDefaultName = `${character.value.name || 'personagem'}_dnd.json`;
-  
+
   const linkElement = document.createElement('a');
   linkElement.setAttribute('href', dataUri);
   linkElement.setAttribute('download', exportFileDefaultName);
@@ -845,7 +845,7 @@ const resetCharacter = () => {
     flaws: '',
     features: [{ name: '', description: '' }]
   };
-  
+
   currentStep.value = 0;
   showCompletionModal.value = false;
 };
@@ -854,7 +854,7 @@ const resetCharacter = () => {
 const canProceed = computed(() => {
   const requiredFields = steps[currentStep.value].required;
   if (requiredFields.length === 0) return true;
-  
+
   return requiredFields.every(field => {
     return character.value[field] !== '' && character.value[field] !== null && character.value[field] !== undefined;
   });
@@ -871,7 +871,7 @@ watch(() => character.value.class, (newClass) => {
   for (const key in character.value.savingThrows) {
     character.value.savingThrows[key] = false;
   }
-  
+
   // Define os testes de resistência baseados na classe
   switch (newClass) {
     case 'Bárbaro':
@@ -926,7 +926,7 @@ watch(() => character.value.class, (newClass) => {
 });
 </script>
 
-<style>
+<style scoped>
 .dnd-wizard {
   font-family: 'MedievalSharp', cursive;
   max-width: 1200px;
@@ -1690,11 +1690,11 @@ watch(() => character.value.class, (newClass) => {
     flex-direction: column;
     gap: 10px;
   }
-  
+
   .review-actions {
     flex-direction: column;
   }
-  
+
   .modal-content {
     margin: 0 20px;
   }
@@ -1704,19 +1704,19 @@ watch(() => character.value.class, (newClass) => {
   .wizard-header, .wizard-footer, .modal {
     display: none;
   }
-  
+
   .dnd-wizard {
     padding: 0;
     background-color: white;
     color: black;
   }
-  
+
   .step-content {
     box-shadow: none;
     padding: 0;
     background-color: white;
   }
-  
+
   .form-group label, .attribute-card h3, .skills-section h3,
   .saving-throws-section h3, .combat-stat-card h3, .hit-points-section h3,
   .attacks-section h3, .equipment-section h3, .currency-section h3,

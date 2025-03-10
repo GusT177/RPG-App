@@ -47,7 +47,8 @@ import { RouterLink } from 'vue-router';
   background-color: whitesmoke;
   border-radius: 10px;
   width: 25rem;
-  padding: 1rem;
+  padding: 2rem;
+  margin: 1rem;
 }
 
 .card-list{
@@ -56,6 +57,7 @@ import { RouterLink } from 'vue-router';
   text-align: center;
   list-style: none;
   gap: 2rem;
+  color: black;
 }
 .link{
   color: azure;
