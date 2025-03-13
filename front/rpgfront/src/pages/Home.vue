@@ -6,7 +6,6 @@ import { RouterLink } from 'vue-router';
   <section class="hero">
     <h1>RPG Dungeons & Dragons</h1>
     <h3>Olhe as instruções abaixo.. </h3>
-    <a><RouterLink class="link" to="/ficha"> Ficha</RouterLink></a>
   </section>
 
   <section class="instructions">

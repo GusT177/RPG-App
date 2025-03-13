@@ -45,6 +45,7 @@ export default {
                 <ul>
                     <li><RouterLink to="/campaign">Campanhas</RouterLink></li>
                     <li><RouterLink to="/characters">Personagens</RouterLink></li>
+                    <li><RouterLink to="/guide">Guia</RouterLink></li>
                     <li><RouterLink to="#">Sobre</RouterLink></li>
                     <li><RouterLink to="#" class="user-label"> Bomdia {{ userInfo.user }}</RouterLink></li>
                     <li><button class="logoutbtn" @click="logout">Sair</button></li>
@@ -54,12 +55,12 @@ export default {
         <div v-else>
             <nav>
                 <ul>
+                    <li><RouterLink to="/guide">Guia</RouterLink></li>
                     <li><RouterLink to="/register">Registrar</RouterLink></li>
                     <li><RouterLink to="/login">Login</RouterLink></li>
                 </ul>
             </nav>
         </div>
-
     </header>
 </template>
 

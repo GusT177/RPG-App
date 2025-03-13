@@ -449,7 +449,7 @@
       </div>
     </main>
 
-    <footer class="wizard-footer">
+    <div class="wizard-footer">
       <button
         v-if="currentStep > 0"
         class="nav-btn prev-btn"
@@ -465,7 +465,7 @@
       >
         Próximo
       </button>
-    </footer>
+    </div>
 
     <!-- Modal de Personagem Finalizado -->
     <div class="modal" v-if="showCompletionModal">
