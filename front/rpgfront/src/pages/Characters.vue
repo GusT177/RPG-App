@@ -1,5 +1,6 @@
 <script setup>
 
+
 </script>
 
 <template>
@@ -9,6 +10,15 @@
       <RouterLink :class="slotProps.class" class="link" to="/ficha">Criar Ficha</RouterLink>
     </Button>
   </section>
+
+ <section class="characters-section">
+    <div vfor="character in characters">
+      <CharacterCard />
+    </div>
+ </section>
+
+
+
 </template>
 
 

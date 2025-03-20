@@ -1,7 +1,6 @@
 <template>
   <div class="dnd-wizard">
     <header class="wizard-header">
-      <h1>DUNGEONS & DRAGONS<sup>®</sup></h1>
       <div class="progress-bar">
         <div class="progress-line" :style="{ width: progressWidth + '%' }"></div>
         <div class="progress-steps">
@@ -20,7 +19,6 @@
     </header>
 
     <main class="wizard-content">
-      <!-- Etapa 1: Informações Básicas -->
       <div v-if="currentStep === 0" class="step-content">
         <div class="form-group">
           <label for="characterName">Nome do Personagem</label>
@@ -1152,7 +1150,7 @@ watch(() => character.value.class, (newClass) => {
 }
 
 .proficiency-section {
-  background-color: white;
+  background-color: rgb(49, 49, 102);
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -1166,26 +1164,32 @@ watch(() => character.value.class, (newClass) => {
 }
 
 .skills-section, .saving-throws-section {
-  background-color: white;
+  display: grid;
+  gap: 1rem;
+  background-color: rbg(49, 49, 102);
+  padding: 1rem;
   border-radius: 8px;
-  padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
 .skills-section h3, .saving-throws-section h3 {
-  margin-top: 0;
+  background-color: rgb(49, 49, 102);
+  padding: 0.5rem;
   color: #d32f2f;
 }
 
 .skill-list, .saving-throws-list {
   display: grid;
+  background-color: rgb(49, 49, 102);
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .skill-item label, .saving-throw-item label {
   display: flex;
+  background-color: rgb(64, 64k, 121);
   align-items: center;
   cursor: pointer;
 }
@@ -1215,16 +1219,15 @@ watch(() => character.value.class, (newClass) => {
 .combat-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 1rem;
 }
 
 .combat-stat-card {
-  background-color: white;
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  gap: 1rem;
 }
 
 .combat-stat-card h3 {
@@ -1240,11 +1243,9 @@ watch(() => character.value.class, (newClass) => {
 }
 
 .hit-points-section {
-  background-color: white;
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
 }
 
 .hit-points-section h3 {
@@ -1292,21 +1293,18 @@ watch(() => character.value.class, (newClass) => {
 }
 
 .attacks-section {
-  background-color: white;
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .attacks-section h3 {
-  margin-top: 0;
   color: #d32f2f;
 }
 
 .attacks-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 10px;
 }
 
 .attacks-table th, .attacks-table td {
@@ -1333,22 +1331,22 @@ watch(() => character.value.class, (newClass) => {
 }
 
 .equipment-section {
-  background-color: white;
+  gap: 1rem;
   border-radius: 8px;
-  padding: 15px;
+  background-color: rgb(49, 49, 102);
+  padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .equipment-section h3 {
-  margin-top: 0;
+  margin: 1rem;
   color: #d32f2f;
 }
 
 .equipment-item {
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
   align-items: center;
 }
 
@@ -1387,10 +1385,11 @@ watch(() => character.value.class, (newClass) => {
 }
 
 .currency-section {
-  background-color: white;
+  gap: 1rem;
   border-radius: 8px;
-  padding: 15px;
+  padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgb(49, 49, 102);
 }
 
 .currency-section h3 {
@@ -1422,7 +1421,9 @@ watch(() => character.value.class, (newClass) => {
 }
 
 .personality-section {
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
+  background-color: rgb(49, 49, 102);
+  padding: 1rem;
 }
 
 .personality-section h3 {
@@ -1440,7 +1441,6 @@ watch(() => character.value.class, (newClass) => {
 }
 
 .features-section {
-  background-color: white;
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -1712,16 +1712,11 @@ watch(() => character.value.class, (newClass) => {
   }
 
   .step-content {
+    display: flex;
     box-shadow: none;
-    padding: 0;
-    background-color: white;
+    background-color: rgb(33, 33, 71);
   }
 
-  .form-group label, .attribute-card h3, .skills-section h3,
-  .saving-throws-section h3, .combat-stat-card h3, .hit-points-section h3,
-  .attacks-section h3, .equipment-section h3, .currency-section h3,
-  .features-section h3 {
-    color: black;
-  }
+
 }
 </style>
